@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/adapter_lecture_main_panel"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/default_layout_margin_small"
+    android:paddingBottom="@dimen/default_layout_margin_small"
+    android:paddingStart="@dimen/default_layout_margin"
+    android:paddingEnd="@dimen/default_layout_margin">
+
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/adapter_lecture_textview_number"
+        android:maxLines="1"
+        android:textSize="@dimen/default_text_size_large"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/default_layout_margin"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/adapter_lecture_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/adapter_lecture_textview_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size_small" />
+
+        <TextView
+            android:id="@+id/adapter_lecture_textview_professor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size_small" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/adapter_lecture_textview_count"
+        android:layout_width="wrap_content"
+        android:minWidth="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textSize="@dimen/default_text_size_large"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+
+</LinearLayout>

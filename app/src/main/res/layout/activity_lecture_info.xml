@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_layout_margin"
+            android:layout_marginStart="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:padding="@dimen/default_layout_margin"
+            android:background="@drawable/square_white_bg"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_layout_margin_small"
+                android:text="기본 정보"
+                android:textSize="@dimen/default_text_size_large"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_bar_size"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/lecture_info_textview_lecture_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_layout_margin_small"
+                android:textSize="@dimen/default_text_size"
+                android:lineHeight="23dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_layout_margin"
+            android:padding="@dimen/default_layout_margin"
+            android:background="@drawable/square_white_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_layout_margin_small"
+                android:text="학년별 인원"
+                android:textSize="@dimen/default_text_size_large" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_bar_size"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:background="@color/colorPrimary" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2,3,4">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="학년"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="바구니 인원"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text=" 신청 인원 "
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text=" 제한 인원 "
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="  빈 자리  "
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/split_bar_size"
+                    android:background="@color/colorPrimary" />
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="1"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_1_1"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_1_2"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_1_3"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_1_4"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="2"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_2_1"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_2_2"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_2_3"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_2_4"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="3"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_3_1"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_3_2"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_3_3"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_3_4"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="4"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_4_1"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_4_2"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_4_3"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_4_4"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/split_bar_size"
+                    android:background="@color/colorPrimary" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:text="전체"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_5_1"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_5_2"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_5_3"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/lecture_info_textview_5_4"
+                        android:layout_height="@dimen/timetable_column_height"
+                        android:textSize="@dimen/default_text_size"
+                        android:gravity="center" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:layout_marginBottom="@dimen/default_layout_margin"
+            android:background="@drawable/square_white_bg"
+            android:text="강의 계획서 보기"
+            android:textSize="@dimen/default_text_size"
+            android:onClick="onClicked"
+            style="?android:attr/borderlessButtonStyle"/>
+    </LinearLayout>
+</ScrollView>

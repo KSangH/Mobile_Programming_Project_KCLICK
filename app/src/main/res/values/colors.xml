@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3e2723</color>
+    <color name="colorPrimaryDark">#1b0000</color>
+    <color name="colorAccent">#3e2723</color>
+    <color name="colorSecondary">#d3b8ae</color>
+
+
+    <color name="timetable_color_1">#ba6b6c</color>
+    <color name="timetable_color_2">#c48b9f</color>
+    <color name="timetable_color_3">#9c64a6</color>
+    <color name="timetable_color_4">#a094b7</color>
+    <color name="timetable_color_5">#6f79a8</color>
+    <color name="timetable_color_6">#8aacc8</color>
+    <color name="timetable_color_7">#4ba3c7</color>
+    <color name="timetable_color_8">#81b9bf</color>
+    <color name="timetable_color_9">#4f9a94</color>
+    <color name="timetable_color_10">#97b498</color>
+    <color name="timetable_color_11">#94af76</color>
+    <color name="timetable_color_12">#808e95</color>
+    <color name="timetable_color_13">#8c7b75</color>
+    <color name="timetable_color_14">#ca9b52</color>
+    <color name="timetable_color_15">#cb9b8c</color>
+</resources>
