@@ -22,13 +22,13 @@ import java.util.HashMap;
 public class LectureActivity extends AppCompatActivity {
 
     private HashMap<String, String> departmentCode, divCode;         // 학과코드, 이수구분 코드, 이수구분구체 코드
-    private Spinner departmentSpinner, divSpinner, infoSpinner;   // 각각의 스피너
+    private Spinner departmentSpinner, divSpinner, infoSpinner, gradeSpinner;   // 각각의 스피너
     private CheckBox peopleCheckBox, timeCheckBox;  // 체크박스 2개
     private ArrayList<LectureBlock> searchLectureList, userLectureList;  // 리스트뷰에 들어갈 어레이리스트
     private LectureAdapter searchLectureAdapter, userLectureAdapter; // 리스트뷰에 들어갈 어댑터
     private ListView searchLectureListView; // 리스트뷰
     private ArrayList<String> departmentArraylist; // 학과명에 들어갈 어레이 리스트
-    private String year, semester, code; // 연, 학기, 시간표번호 저장할 스트링
+    private String year, semester, code, grade; // 연, 학기, 시간표번호 저장할 스트링
     private Handler handler; // 스레드와 통신하는 핸들러
     private ErrorCodeBlock errorCode; // 스레드 에러여부 확인하는 블록
     private AlertDialog progressDialog; // 스레드 작동 시 다이얼로그
@@ -39,6 +39,7 @@ public class LectureActivity extends AppCompatActivity {
     private final String[] infoKey = {"외국어", "글쓰기", "취창업", "SW", "인성"}; // 기교 세부영역
     private final String[] infoValue = {"B52001", "B52002", "B52003", "B52004", "B52005"}; // 기교 세부영역 코드
     private final String[] infoKey2 = {"학문소양및인성함양", "글로벌인재양성", "사고력증진"}; // 심교 세부영역
+    private final String[] gradeKey = {"전체", "1학년", "2학년", "3학년", "4학년"}; // 심교 세부영역
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class LectureActivity extends AppCompatActivity {
         departmentSpinner = (Spinner) findViewById(R.id.lecture_spinner_department);
         divSpinner = (Spinner) findViewById(R.id.lecture_spinner_div);
         infoSpinner = (Spinner) findViewById(R.id.lecture_spinner_info);
+        gradeSpinner = (Spinner) findViewById(R.id.lecture_spinner_grade);
 
         // 각각의 체크박스 ID 불러오기
         peopleCheckBox = (CheckBox) findViewById(R.id.lecture_checkbox_people);
@@ -274,13 +276,52 @@ public class LectureActivity extends AppCompatActivity {
 
             }
         });
+
+        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_item, new ArrayList<String>(Arrays.asList(gradeKey)));
+        gradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gradeSpinner.setAdapter(gradeAdapter);
+
+        gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                grade = i + "";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(findViewById(R.id.lecture_layout_user).getVisibility() == View.GONE){
+            zoomClicked(findViewById(R.id.lecture_textview_zoom));
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    public void zoomClicked(View view){
+        LinearLayout ll = findViewById(R.id.lecture_layout_user);
+        if(ll.getVisibility() != View.GONE){
+            ((TextView)view).setText("원래대로");
+            ll.setVisibility(View.GONE);
+        } else {
+            ((TextView)view).setText("크게보기");
+            ll.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     // 조회 버튼 클릭 시 작동 함수
     public void onClicked(View view) {
         try {
             // 연, 학기, 학년, 그 외 파라미터
-            String params_year = year, params_semester = "B0101" + semester, params_grade = "0", params_etc1, params_etc2, params_etc3;
+            String params_year = year, params_semester = "B0101" + semester, params_grade = grade, params_etc1, params_etc2, params_etc3;
             // 스레드 선언
             Thread searchThread = null;
             // 에러블록 선언
@@ -288,6 +329,14 @@ public class LectureActivity extends AppCompatActivity {
 
             switch (view.getId()) {
                 case R.id.lecture_button_condition:
+
+                    params_etc1 = ((EditText) findViewById(R.id.lecture_edittext_lecturename)).getText().toString();
+                    // 강의명이 적혀있으면 조회
+                    if (!params_etc1.equals("")) {
+                        searchThread = new Thread(new SearchingTask(handler, searchLectureList, errorCode, params_year, params_semester, params_grade, params_etc1));
+                        break;
+                    }
+                    
                     // 이수구분 코드
                     String div = divSpinner.getSelectedItem().toString();
 
@@ -322,20 +371,7 @@ public class LectureActivity extends AppCompatActivity {
                         searchThread = new Thread(new SearchingTask(handler, searchLectureList, errorCode, params_year, params_semester, params_grade, params_etc1, params_etc2));
                     }
                     break;
-
-                case R.id.lecture_button_lecturename:
-                    // 강의명으로 조회하는 코드
-                    params_etc1 = ((EditText) findViewById(R.id.lecture_edittext_lecturename)).getText().toString();
-                    // 강의명이 비어있으면 조회 중단
-                    if (params_etc1.equals("")) {
-                        AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
-                        alertdialog.setTitle("알림")
-                                .setMessage("강의명을 입력해주세요.")
-                                .setPositiveButton("확인", null).show();
-                        return;
-                    }
-                    searchThread = new Thread(new SearchingTask(handler, searchLectureList, errorCode, params_year, params_semester, params_grade, params_etc1));
-                    break;
+                    
             }
 
             // 검색 스레드가 설정된 경우
@@ -386,7 +422,7 @@ public class LectureActivity extends AppCompatActivity {
         if (convertTime == null) {
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
             alertdialog.setTitle("안내")
-                    .setMessage("월-금, 1-18교시가 아닌 시간표의 경우, 추가할 수 없습니다.")
+                    .setMessage("월-금, 1-19교시가 아닌 시간표의 경우, 추가할 수 없습니다.")
                     .setPositiveButton("확인", null).show();
             return;
         }

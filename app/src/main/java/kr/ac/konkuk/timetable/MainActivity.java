@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TimeblockView[][] timeTableArrays; // 시간표 배열
     private String year, semester, code = "1"; // 연도, 학기, 시간표번호
     private ArrayList<LectureBlock> lectureList; // 과목 배열
-    private final int TIME_COUNT = 18; // 현재 지원은 18교시까지
+    private final int TIME_COUNT = 19; // 현재 지원은 18교시까지
     private AbsoluteLayout timeAbsoluteLayout; // 블록 위에 강의명, 교수명 적혀질 레이아웃
 
     @Override
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 만약 초기 실행 시 값이 없다면 2020,2학기로 설정해준다.
         if (year.equals("") || semester.equals("")) {
-            year = "2020";
-            semester = "2";
+            year = "2021";
+            semester = "1";
             saveSemester();
         }
 
@@ -86,20 +86,23 @@ public class MainActivity extends AppCompatActivity {
             TableRow tableRow = new TableRow(this);
 
             // 교시를 나타내는 타임블록뷰
-            TimeblockView countView = new TimeblockView(this, " " + (9 + i / 2) + " ", i % 2);
+            TimeblockView countView = new TimeblockView(this, " " + (9 + i / 2) + " ", i < 18 ? i % 2 : -1);
             if (i % 2 == 1) // 홀수 행에는 숫자를 지움.
                 countView.setText(null);
 
             // 기본 레리아웃 컬러 설정
             countView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.timetable_column_height)));
             countView.setTextColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+            if (i >= 18) {
+                countView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.timetable_column_height) * 2));
+            }
 
             // 테이블 행에 추가
             tableRow.addView(countView);
 
             // 월화수목금 아래에 위치하는 블록들 18교시까지 생성
             for (int j = 0; j < 5; j++) {
-                timeTableArrays[i][j] = new TimeblockView(this, null, i % 2);
+                timeTableArrays[i][j] = new TimeblockView(this, null, i < 18 ? i % 2 : -1);
                 timeTableArrays[i][j].setLayoutParams(timeTableParams);
                 tableRow.addView(timeTableArrays[i][j]);
             }
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 int check = 0;
                 TimeblockView lectureTextBlock = null;
                 for (int k = 0; k < TIME_COUNT; k++) {
-                    // k요일, j교시인 경우
+                    // j요일, k교시인 경우
                     if (convertTime[k][j] == 1) {
                         if (check == 0) {
                             // 해당 과목 시작시간이면 현재 블록의 x,y좌표와 텍스트를 만들어 새로운 텍스트블럭을 만든다.
@@ -214,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                         check++;
+                        if(k >= 18)
+                            check++;
                     } else {
                         // 만약 현재 텍스트 블럭이 만들어져 있으면
                         if (lectureTextBlock != null) {

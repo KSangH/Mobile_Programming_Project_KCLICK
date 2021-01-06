@@ -33,7 +33,7 @@ public class TimeblockView extends TextView {
             setBackgroundResource(R.drawable.main_table_border_down);
         else
             setBackgroundResource(R.drawable.main_table_border);
-        setGravity(Gravity.CENTER);
+        setGravity(Gravity.CENTER_HORIZONTAL);
         setText(text);
     }
 

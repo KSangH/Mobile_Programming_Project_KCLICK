@@ -44,15 +44,14 @@
                 android:visibility="gone"
                 android:layout_weight="1.0" />
 
-            <Button
-                android:layout_width="85dp"
+
+            <Spinner
+                android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:id="@+id/lecture_button_condition"
+                android:id="@+id/lecture_spinner_grade"
                 android:background="@drawable/square_white_bg"
-                android:textSize="@dimen/default_text_size"
-                android:text="@string/activity_lecture_button_condition"
-                android:textColor="@android:color/black"
-                android:onClick="onClicked" />
+                android:textAlignment="center" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,6 +62,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:gravity="center">
+
 
             <EditText
                 android:layout_width="0dp"
@@ -75,18 +75,9 @@
                 android:textColorHint="@color/colorSecondary"
                 android:textSize="@dimen/default_text_size"
                 android:textColor="@android:color/white"
-                android:layout_marginEnd="@dimen/default_layout_margin"
                 android:inputType="text" />
 
-            <Button
-                android:layout_width="85dp"
-                android:layout_height="40dp"
-                android:id="@+id/lecture_button_lecturename"
-                android:background="@drawable/square_white_bg"
-                android:textSize="@dimen/default_text_size"
-                android:text="@string/activity_lecture_button_lecturename"
-                android:textColor="@android:color/black"
-                android:onClick="onClicked" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -94,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_layout_margin"
             android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -115,11 +107,23 @@
                 android:text="@string/activity_lecture_checkbox_time"
                 android:textSize="@dimen/default_text_size"
                 android:textColor="@android:color/white" />
+
+            <Button
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:id="@+id/lecture_button_condition"
+                android:background="@drawable/square_white_bg"
+                android:textSize="@dimen/default_text_size"
+                android:text="@string/activity_lecture_button_condition"
+                android:textColor="@android:color/black"
+                android:onClick="onClicked" />
+
         </LinearLayout>
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/lecture_layout_user"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="@dimen/default_layout_margin"
@@ -144,7 +148,7 @@
         <ListView
             android:id="@+id/lecture_listview_user"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -154,14 +158,32 @@
         android:layout_marginEnd="@dimen/default_layout_margin"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_layout_margin"
-            android:layout_marginTop="@dimen/default_layout_margin"
-            android:text="@string/activity_lecture_textview_search_timetable"
-            android:textSize="@dimen/default_text_size"
-            android:textColor="@color/colorPrimary" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:text="@string/activity_lecture_textview_search_timetable"
+                android:textSize="@dimen/default_text_size"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/lecture_textview_zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="zoomClicked"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                android:textSize="@dimen/default_text_size"
+                android:text="크게보기" />
+
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
