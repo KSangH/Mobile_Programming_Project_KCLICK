@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="@dimen/default_layout_margin"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="@dimen/default_layout_margin"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_text_size"
+        android:padding="@dimen/default_layout_margin_small"
+        android:text=" 본 앱은 건국대학교 종합강의시간표를 이용하여 제작 된 앱입니다. 학과 수업간 프로젝트로 제작되어 다수의 버그가 존재할 수 있습니다. 이 점 참고하여 사용해주시면 됩니다.
+                    \n\n 기능 1. 시간표 조회하기
+                    \n 기능 2. 시간표 조합하기
+                    \n 기능 3. 강의계획서 및 학년별 인원 확인하기
+                    \n 기능 4. 수강신청 가능한 과목만 조회하기"/>
+
+    <TextView
+        android:text="개발자 : 건국대학교 스마트ICT융합공학과 김상형"
+        android:textSize="@dimen/default_text_size"
+        android:gravity="center"
+        android:padding="@dimen/default_layout_margin_small"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <TextView
+        android:id="@+id/app_version_textview"
+        android:textSize="@dimen/default_text_size"
+        android:gravity="center"
+        android:padding="@dimen/default_layout_margin_small"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package kr.ac.konkuk.timetable;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,6 +35,7 @@ public class LectureInfoActivity extends AppCompatActivity {
 
         // 뒤로가기 설정
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // 인텐트로 넘어온 자료 저장
         Intent in = getIntent();

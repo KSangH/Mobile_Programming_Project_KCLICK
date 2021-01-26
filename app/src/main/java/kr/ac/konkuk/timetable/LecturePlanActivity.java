@@ -1,6 +1,7 @@
 package kr.ac.konkuk.timetable;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -15,6 +16,7 @@ public class LecturePlanActivity extends AppCompatActivity {
 
         // 뒤로가기 버튼 활성화
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // 인텐트로 넘어온 데이터 저장
         Intent in = getIntent();

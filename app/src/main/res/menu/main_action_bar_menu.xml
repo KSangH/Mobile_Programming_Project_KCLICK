@@ -6,4 +6,6 @@
           android:title="add"/>
     <item android:id="@+id/changesemister_menu"
           android:title="학기 변경"/>
+    <item android:id="@+id/infomation_menu"
+        android:title="앱 정보"/>
 </menu>

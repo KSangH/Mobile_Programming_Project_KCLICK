@@ -2,6 +2,7 @@ package kr.ac.konkuk.timetable;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -212,10 +213,12 @@ public class SearchingTask implements Runnable {
                         block.setSuguni(elements.get(0).text());
                         StringTokenizer token = new StringTokenizer(elements.get(1).text());
                         block.setCurrent(token.nextToken("/").trim());
-                        block.setTotal(token.nextToken("/").trim());
+                        if(token.hasMoreTokens())
+                            block.setTotal(token.nextToken("/").trim());
                     }
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 errorBool = true;
             }
         }

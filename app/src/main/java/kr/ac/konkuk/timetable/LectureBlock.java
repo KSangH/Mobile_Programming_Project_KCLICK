@@ -191,6 +191,9 @@ public class LectureBlock implements Serializable {
         StringTokenizer token = new StringTokenizer(lecture_time);
         int[][] time = new int[19][5];
 
+        if(token.countTokens() < 1){
+            return null;
+        }
         // 한 주에 여러번 있을 수 있으므로 토큰이 끝날때까지 돌린다.
         while (token.hasMoreTokens()) {
             String key = token.nextToken(",").trim();

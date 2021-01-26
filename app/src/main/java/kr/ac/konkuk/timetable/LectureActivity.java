@@ -2,6 +2,7 @@ package kr.ac.konkuk.timetable;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
@@ -48,6 +49,7 @@ public class LectureActivity extends AppCompatActivity {
 
         // 뒤로가기 버튼 설정
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setLectureInit();
     }
 
@@ -300,7 +302,24 @@ public class LectureActivity extends AppCompatActivity {
         if(findViewById(R.id.lecture_layout_user).getVisibility() == View.GONE){
             zoomClicked(findViewById(R.id.lecture_textview_zoom));
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
+            alertdialog.setTitle("알림")
+                    .setMessage("저장하시겠습니까?")
+                    .setPositiveButton("저장", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            saveLecture();
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("저장하지 않기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                    }).show();
         }
     }
 
@@ -507,7 +526,7 @@ public class LectureActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // 뒤로가기 버튼 시 종료한다.
-                finish();
+                onBackPressed();
                 return true;
             case R.id.save_menu:
                 // 저장하고 종료한다.

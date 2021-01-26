@@ -3,6 +3,7 @@ package kr.ac.konkuk.timetable;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTimetableInit();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -284,6 +286,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 semesterdialog.show();
+                return true;
+            case R.id.infomation_menu:
+                startActivity(new Intent(this, AppInfoActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
