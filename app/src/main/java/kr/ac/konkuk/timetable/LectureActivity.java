@@ -174,6 +174,9 @@ public class LectureActivity extends AppCompatActivity {
 
         // 이수 구분 코드 지정 및 이수 구분 지정 함수
         setDivCode();
+
+        // 선택한 학점의 합
+        setTotalGrade();
     }
 
     // 검색 스레드 종료후 실행할 함수.
@@ -299,7 +302,7 @@ public class LectureActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(findViewById(R.id.lecture_layout_user).getVisibility() == View.GONE){
+        if (findViewById(R.id.lecture_layout_user).getVisibility() == View.GONE) {
             zoomClicked(findViewById(R.id.lecture_textview_zoom));
         } else {
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
@@ -323,13 +326,13 @@ public class LectureActivity extends AppCompatActivity {
         }
     }
 
-    public void zoomClicked(View view){
+    public void zoomClicked(View view) {
         LinearLayout ll = findViewById(R.id.lecture_layout_user);
-        if(ll.getVisibility() != View.GONE){
-            ((TextView)view).setText("원래대로");
+        if (ll.getVisibility() != View.GONE) {
+            ((TextView) view).setText("원래대로");
             ll.setVisibility(View.GONE);
         } else {
-            ((TextView)view).setText("크게보기");
+            ((TextView) view).setText("크게보기");
             ll.setVisibility(View.VISIBLE);
         }
 
@@ -355,7 +358,7 @@ public class LectureActivity extends AppCompatActivity {
                         searchThread = new Thread(new SearchingTask(handler, searchLectureList, errorCode, params_year, params_semester, params_grade, params_etc1));
                         break;
                     }
-                    
+
                     // 이수구분 코드
                     String div = divSpinner.getSelectedItem().toString();
 
@@ -390,7 +393,7 @@ public class LectureActivity extends AppCompatActivity {
                         searchThread = new Thread(new SearchingTask(handler, searchLectureList, errorCode, params_year, params_semester, params_grade, params_etc1, params_etc2));
                     }
                     break;
-                    
+
             }
 
             // 검색 스레드가 설정된 경우
@@ -405,6 +408,15 @@ public class LectureActivity extends AppCompatActivity {
             errorMessage(false);
         }
 
+    }
+
+    private void setTotalGrade() {
+        int sum = 0;
+        for(LectureBlock lb : userLectureList){
+            String grade = lb.getCredit();
+            sum += Integer.parseInt(grade.split("학")[0]);
+        }
+        ((TextView) findViewById(R.id.lecture_textview_totalgrade)).setText("(" + sum + "학점)");
     }
 
     // 현재 사용자 시간표와 중복여부 확인하기
@@ -468,6 +480,8 @@ public class LectureActivity extends AppCompatActivity {
 
         // 수정되었음을 알린다.
         userLectureAdapter.notifyDataSetChanged();
+
+        setTotalGrade();
     }
 
     // 강의 삭제 시, 호출되는 함수
@@ -475,6 +489,8 @@ public class LectureActivity extends AppCompatActivity {
         if (userLectureList.contains(lb))
             userLectureList.remove(lb);
         userLectureAdapter.notifyDataSetChanged();
+
+        setTotalGrade();
     }
 
     // 강의를 단말기에 저장하는 함수

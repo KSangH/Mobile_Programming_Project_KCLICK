@@ -130,14 +130,27 @@
         android:layout_marginEnd="@dimen/default_layout_margin"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_layout_margin"
-            android:layout_marginTop="@dimen/default_layout_margin"
-            android:text="@string/activity_lecture_textview_select_timetable"
-            android:textSize="@dimen/default_text_size"
-            android:textColor="@color/colorPrimary" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:text="@string/activity_lecture_textview_select_timetable"
+                android:textSize="@dimen/default_text_size" />
+            <TextView
+                android:id="@+id/lecture_textview_totalgrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_layout_margin"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                android:textSize="@dimen/default_text_size"/>
+
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -170,8 +183,7 @@
                 android:layout_marginStart="@dimen/default_layout_margin"
                 android:layout_marginTop="@dimen/default_layout_margin"
                 android:text="@string/activity_lecture_textview_search_timetable"
-                android:textSize="@dimen/default_text_size"
-                android:textColor="@color/colorPrimary" />
+                android:textSize="@dimen/default_text_size" />
 
             <TextView
                 android:id="@+id/lecture_textview_zoom"
