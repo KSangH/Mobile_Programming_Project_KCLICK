@@ -32,9 +32,9 @@ public class LectureBlock implements Serializable {
         this.lecture_time = elements.get(8).text()+" ";
         this.lecture_professor = elements.get(9).text()+" ";
         setForeign(elements.get(10).text());
-        this.lecture_type1 = elements.get(12).text()+" ";
-        this.lecture_type2 = elements.get(13).text()+" ";
-        this.lecture_remark = elements.get(16).text()+" ";
+        this.lecture_type1 = elements.get(13).text()+" ";
+        this.lecture_type2 = elements.get(14).text()+" ";
+        this.lecture_remark = elements.get(17).text()+" ";
     }
 
     // 파일에서 한 줄씩 불러와서 쓰는 생성자 (toString 형식과같음)
