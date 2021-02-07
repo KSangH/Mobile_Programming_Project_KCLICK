@@ -57,14 +57,28 @@ public class MainActivity extends AppCompatActivity {
                 }).create();
         initDialog.show();
 
+        // 컬러 정보 초기화
+        SharedPreferences sharedPreferences_color = getSharedPreferences("KU-COLOR", MODE_PRIVATE);
+        String color_init = sharedPreferences_color.getString("color1", "");
+
+        if (color_init.equals("")) {
+            SharedPreferences.Editor editor = sharedPreferences_color.edit();
+            String[] colorArray = {"#ba6b6c", "#c48b9f", "#9c64a6", "#a094b7", "#6f79a8",
+                    "#8aacc8", "#4ba3c7", "#81b9bf", "#4f9a94", "#97b498",
+                    "#94af76", "#808e95", "#8c7b75", "#ca9b52", "#cb9b8c"};
+            for(int i=0; i<15; i++){
+                editor.putString("color"+(i+1), colorArray[i]);
+            }
+            editor.commit();
+        }
+
         // 년, 학기 저장을 위한 SharedPreferences 사용
         SharedPreferences sharedPreferences = getSharedPreferences("KU", MODE_PRIVATE);
-
         // 값을 얻어온다.
         year = sharedPreferences.getString("year", "");
         semester = sharedPreferences.getString("semester", "");
 
-        // 만약 초기 실행 시 값이 없다면 2020,2학기로 설정해준다.
+        // 만약 초기 실행 시 값이 없다면 2021, 1학기로 설정해준다.
         if (year.equals("") || semester.equals("")) {
             year = "2021";
             semester = "1";
@@ -151,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         // 시간표 위에 표시된 강의 뷰 삭제
         timeAbsoluteLayout.removeAllViews();
         // 강의블록 색상 순서 초기화
-        TimeblockView.setInitColor();
+        TimeblockView.setInitColor(getApplicationContext());
     }
 
     // 시간표 셋팅 함수 (새로고침 함수)
@@ -219,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                         check++;
-                        if(k >= 18)
+                        if (k >= 18)
                             check++;
                     } else {
                         // 만약 현재 텍스트 블럭이 만들어져 있으면
@@ -286,6 +300,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 semesterdialog.show();
+                return true;
+            case R.id.changecolor_menu:
+                Intent intent = new Intent(this, ThemeSettingActivity.class);
+                startActivityForResult(intent, 0);
                 return true;
             case R.id.infomation_menu:
                 startActivity(new Intent(this, AppInfoActivity.class));
