@@ -80,7 +80,19 @@ public class SearchingTask implements Runnable {
                 // 파라미터 수의 차이로 구분
                 if (params.length == 4) {
                     // 과목명으로 조회하기
-                    document = Jsoup.connect("https://kupis.konkuk.ac.kr/sugang/acd/cour/time/SeoulTimetableInfo.jsp").data("ltYy", params[0]).data("ltShtm", params[1]).data("sbjtNm", params[3].replaceAll(" ", "")).postDataCharset("EUC-KR").post();
+                    try {
+                        params[3] = params[3].replaceAll(" ", "");
+                        if(params[3].length() == 4){
+                            Integer.parseInt(params[3]);
+                            document = Jsoup.connect("https://kupis.konkuk.ac.kr/sugang/acd/cour/time/SeoulTimetableInfo.jsp").data("ltYy", params[0]).data("ltShtm", params[1]).data("sbjtId", params[3]).postDataCharset("EUC-KR").post();
+                        } else {
+                            throw new Exception();
+                        }
+
+                    }catch(Exception e){
+                        document = Jsoup.connect("https://kupis.konkuk.ac.kr/sugang/acd/cour/time/SeoulTimetableInfo.jsp").data("ltYy", params[0]).data("ltShtm", params[1]).data("sbjtNm", params[3]).postDataCharset("EUC-KR").post();
+
+                    }
                     elements = document.select("tr[class=table_bg_white]");
                 } else if (params.length == 5) {
                     // 일반 (학과 + 이수구분)으로 조회하기

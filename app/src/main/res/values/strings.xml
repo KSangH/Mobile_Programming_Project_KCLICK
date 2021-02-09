@@ -6,7 +6,7 @@
 
     <string name="activity_lecture_button_condition">강의 조회</string>
     <string name="activity_lecture_button_lecturename">강의명 조회</string>
-    <string name="activity_lecture_edittext_lecture">강의명 입력</string>
+    <string name="activity_lecture_edittext_lecture">과목번호(4자리) 또는 교과목명 입력</string>
     <string name="activity_lecture_checkbox_people">인원 초과 제외</string>
     <string name="activity_lecture_checkbox_time">시간 중복 제외</string>선택한 시간표
     <string name="activity_lecture_textview_select_timetable">선택한 강의 목록</string>
