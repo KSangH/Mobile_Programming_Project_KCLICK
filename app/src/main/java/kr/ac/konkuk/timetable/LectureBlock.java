@@ -180,7 +180,13 @@ public class LectureBlock implements Serializable {
             return true;
     }
 
-
+    // 인원 초과여부 수구니 함수
+    public boolean isSuguniFull() {
+        if (lecture_total > lecture_suguni)
+            return false;
+        else
+            return true;
+    }
     // 이 함수는 시간이 월-금, 1-18교시가 아니면 null처리하며, 그 외에는 시간에 맞는 배열을 반환함.
     public int[][] convertTime() {
 

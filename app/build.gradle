@@ -8,8 +8,8 @@ android {
         applicationId "kr.ac.konkuk.timetable"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 5
-        versionName "1.0.0-Beta"
+        versionCode 7
+        versionName "1.0.0-Beta2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

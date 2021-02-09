@@ -213,6 +213,9 @@ public class LectureActivity extends AppCompatActivity {
             }
         }
 
+        // 학년을 설정한다.
+        searchLectureAdapter.setGrade(grade);
+
         // 리스트가 변경되었음을 알리고 리스트뷰를 맨위로 올리기
         searchLectureAdapter.notifyDataSetChanged();
         searchLectureListView.smoothScrollToPosition(0);
