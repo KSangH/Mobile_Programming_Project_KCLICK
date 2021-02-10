@@ -1,60 +1,82 @@
 package kr.ac.konkuk.timetable.theme;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import kr.ac.konkuk.timetable.R;
 
-public class ThemeSettingAdapter extends BaseAdapter {
+public class ThemeSettingAdapter extends RecyclerView.Adapter<ThemeSettingAdapter.ThemeSettingViewHolder> {
 
     private String[] colorList;
+    private ThemeSettingListener listener;
 
+    // 생성자
     public ThemeSettingAdapter(String[] colorList) {
         this.colorList = colorList;
     }
 
+    // 터치 리스너 설정
+    public void setThemeSettingListener(ThemeSettingListener listener) {
+        this.listener = listener;
+    }
+
+    // 뷰 설정
+    @NonNull
     @Override
-    public int getCount() {
+    public ThemeSettingViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.adapter_theme_setting, viewGroup, false);
+        ThemeSettingViewHolder viewHolder = new ThemeSettingViewHolder(view);
+        return viewHolder;
+    }
+
+    // 뷰 내부 수정
+    @Override
+    public void onBindViewHolder(@NonNull ThemeSettingViewHolder holder, int position) {
+        holder.textView.setText("색상 " + (position + 1));
+        holder.imageView.setBackgroundColor(Color.parseColor(colorList[position]));
+    }
+
+    // 아이템 수
+    @Override
+    public int getItemCount() {
         return colorList.length;
     }
+    
+    // 커스텀 홀더 클래스 생성
+    class ThemeSettingViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public String getItem(int i) {
-        return colorList[i];
-    }
+        protected TextView textView;
+        protected ImageView imageView;
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+        public ThemeSettingViewHolder(View view) {
+            super(view);
+            textView = view.findViewById(R.id.adapter_theme_textview);
+            imageView = view.findViewById(R.id.adapter_theme_imageview);
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        Context context = viewGroup.getContext();
-
-        // 뷰가 없으면 지정해준다.
-        if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.adapter_theme_setting, viewGroup, false);
+            // 터치 시 작동할 함수
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                            listener.onClick(view, getAdapterPosition());
+                        }
+                    }
+                }
+            });
         }
+    }
 
-        // 현재 i번쨰의 블록을 가져온다.
-        String color = getItem(i);
-
-        // 각각의 객체를 불러온다.
-        TextView textView = view.findViewById(R.id.adapter_theme_textview);
-        ImageView imageView = view.findViewById(R.id.adapter_theme_imagebutton);
-
-        textView.setText("색상 " + (i + 1));
-        imageView.setBackgroundColor(Color.parseColor(color));
-
-        return view;
+    
+    // 리스너 인터페이스
+    interface ThemeSettingListener {
+        public void onClick(View view, int position);
     }
 
 
