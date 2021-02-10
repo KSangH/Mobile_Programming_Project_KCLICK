@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.lecture;
 
 import org.jsoup.select.Elements;
 

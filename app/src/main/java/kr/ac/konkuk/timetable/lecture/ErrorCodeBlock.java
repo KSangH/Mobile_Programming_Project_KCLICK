@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.lecture;
 
 
 // 본 클래스는 에러 여부를 확인하기 위한 클래스입니다.

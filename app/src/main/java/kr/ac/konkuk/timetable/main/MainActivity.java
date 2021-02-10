@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,11 @@ import android.widget.TableRow;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.chip.ChipGroup;
+import kr.ac.konkuk.timetable.*;
+import kr.ac.konkuk.timetable.lecture.LectureActivity;
+import kr.ac.konkuk.timetable.lecture.LectureBlock;
+import kr.ac.konkuk.timetable.lecture.LectureInfoActivity;
+import kr.ac.konkuk.timetable.theme.ThemeSettingActivity;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.main;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import kr.ac.konkuk.timetable.R;
 
 public class SemesterDialog extends Dialog {
 

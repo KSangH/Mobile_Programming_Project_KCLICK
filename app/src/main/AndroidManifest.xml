@@ -12,21 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ThemeSettingActivity"
+            android:name=".theme.ThemeSettingActivity"
             android:label="@string/title_activity_theme_setting" />
         <activity
-            android:name=".AppInfoActivity"
+            android:name=".main.AppInfoActivity"
             android:label="@string/title_activity_app_info" />
         <activity
-            android:name=".LectureInfoActivity"
+            android:name=".lecture.LectureInfoActivity"
             android:label="@string/title_activity_lecture_info" />
         <activity
-            android:name=".LecturePlanActivity"
+            android:name=".lecture.LecturePlanActivity"
             android:label="@string/title_activity_lecture_plan" />
         <activity
-            android:name=".LectureActivity"
+            android:name=".lecture.LectureActivity"
             android:label="@string/title_activity_lecture" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.theme;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import kr.ac.konkuk.timetable.R;
 
 public class ThemeSettingAdapter extends BaseAdapter {
 

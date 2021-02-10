@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.main;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.TextView;
+import kr.ac.konkuk.timetable.R;
+import kr.ac.konkuk.timetable.lecture.LectureBlock;
 
 import static android.content.Context.MODE_PRIVATE;
 

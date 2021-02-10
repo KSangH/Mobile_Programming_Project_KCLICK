@@ -1,18 +1,16 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.theme;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
+import kr.ac.konkuk.timetable.R;
 
 public class ThemeSettingActivity extends AppCompatActivity {
 

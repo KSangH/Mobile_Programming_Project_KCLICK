@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.lecture;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
+import kr.ac.konkuk.timetable.R;
 
 public class LecturePlanActivity extends AppCompatActivity {
 

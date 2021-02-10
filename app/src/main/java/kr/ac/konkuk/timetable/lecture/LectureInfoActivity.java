@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.lecture;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import kr.ac.konkuk.timetable.R;
 
 public class LectureInfoActivity extends AppCompatActivity {
 

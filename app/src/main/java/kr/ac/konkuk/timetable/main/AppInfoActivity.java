@@ -1,4 +1,4 @@
-package kr.ac.konkuk.timetable;
+package kr.ac.konkuk.timetable.main;
 
 import android.app.Application;
 import android.content.pm.ActivityInfo;
@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import kr.ac.konkuk.timetable.R;
 
 public class AppInfoActivity extends AppCompatActivity {
 
