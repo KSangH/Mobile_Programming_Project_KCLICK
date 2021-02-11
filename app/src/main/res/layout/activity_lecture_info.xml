@@ -1,238 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lecture_info_layout_lecture_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_layout_margin"
-            android:layout_marginStart="@dimen/default_layout_margin"
-            android:layout_marginEnd="@dimen/default_layout_margin"
-            android:padding="@dimen/default_layout_margin"
             android:background="@drawable/square_white_bg"
-            android:orientation="vertical">
+            android:padding="@dimen/default_layout_margin"
+            android:layout_marginHorizontal="@dimen/default_layout_margin"
+            android:layout_marginVertical="@dimen/default_layout_margin"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lecture_info_layout_lecture_count">
+
             <TextView
+                android:id="@+id/lecture_info_textview_lecture_info_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_layout_margin_small"
                 android:text="기본 정보"
-                android:textSize="@dimen/default_text_size_large"/>
+                android:textSize="@dimen/default_text_size_large"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/lecture_info_imageview_lecture_info_line"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/split_bar_size"
                 android:layout_marginTop="@dimen/default_layout_margin"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/lecture_info_textview_lecture_info_title" />
 
             <TextView
                 android:id="@+id/lecture_info_textview_lecture_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lineHeight="23dp"
                 android:padding="@dimen/default_layout_margin_small"
                 android:textSize="@dimen/default_text_size"
-                android:lineHeight="23dp"/>
+                app:layout_constraintTop_toBottomOf="@id/lecture_info_imageview_lecture_info_line" />/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lecture_info_layout_lecture_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_layout_margin"
-            android:padding="@dimen/default_layout_margin"
+            android:layout_marginHorizontal="@dimen/default_layout_margin"
             android:background="@drawable/square_white_bg"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/default_layout_margin"
+            app:layout_constraintTop_toBottomOf="@+id/lecture_info_layout_lecture_info"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lecture_info_button_lecture_plan">
 
             <TextView
+                android:id="@+id/lecture_info_textview_lecture_count_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_layout_margin_small"
                 android:text="학년별 인원"
-                android:textSize="@dimen/default_text_size_large" />
+                android:textSize="@dimen/default_text_size_large"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/lecture_info_imageview_lecture_count_line"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/split_bar_size"
                 android:layout_marginTop="@dimen/default_layout_margin"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/lecture_info_textview_lecture_count_title" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="0,1,2,3,4">
+                android:stretchColumns="0,1,2,3,4"
+                app:layout_constraintTop_toBottomOf="@id/lecture_info_imageview_lecture_count_line">
 
                 <TableRow>
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="학년"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="바구니 인원"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text=" 신청 인원 "
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text=" 제한 인원 "
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="  빈 자리  "
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/split_bar_size"
                     android:background="@color/colorPrimary" />
+
                 <TableRow>
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="1"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_1"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_2"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_3"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_4"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="2"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_1"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_2"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_3"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_4"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="3"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_1"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_2"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_3"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_4"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="4"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_1"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_2"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_3"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_4"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
                 <ImageView
@@ -244,47 +266,53 @@
 
                     <TextView
                         android:layout_height="@dimen/timetable_column_height"
+                        android:gravity="center"
                         android:text="전체"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_1"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_2"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_3"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_4"
                         android:layout_height="@dimen/timetable_column_height"
-                        android:textSize="@dimen/default_text_size"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:textSize="@dimen/default_text_size" />
                 </TableRow>
 
             </TableLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <Button
+            android:id="@+id/lecture_info_button_lecture_plan"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_layout_margin"
-            android:layout_marginEnd="@dimen/default_layout_margin"
-            android:layout_marginBottom="@dimen/default_layout_margin"
             android:background="@drawable/square_white_bg"
+            android:onClick="onClicked"
+            android:layout_marginHorizontal="@dimen/default_layout_margin"
+            android:layout_marginVertical="@dimen/default_layout_margin"
             android:text="강의 계획서 보기"
             android:textSize="@dimen/default_text_size"
-            android:onClick="onClicked"
-            style="?android:attr/borderlessButtonStyle"/>
-    </LinearLayout>
-</ScrollView>
+            app:layout_constraintTop_toBottomOf="@id/lecture_info_layout_lecture_count"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
