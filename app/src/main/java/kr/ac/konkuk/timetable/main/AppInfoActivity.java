@@ -1,9 +1,7 @@
 package kr.ac.konkuk.timetable.main;
 
-import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +20,7 @@ public class AppInfoActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         try {
-            ((TextView)findViewById(R.id.app_version_textview)).setText("앱 버젼 : "+ getPackageManager().getPackageInfo(getPackageName(), 0 ).versionName);
+            ((TextView)findViewById(R.id.appinfo_textview_version)).setText("앱 버젼 : "+ getPackageManager().getPackageInfo(getPackageName(), 0 ).versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
