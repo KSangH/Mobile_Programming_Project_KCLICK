@@ -195,7 +195,7 @@ public class LectureBlock implements Serializable {
             return null;
 
         StringTokenizer token = new StringTokenizer(lecture_time);
-        int[][] time = new int[19][5];
+        int[][] time = new int[24][5];
 
         if(token.countTokens() < 1){
             return null;
@@ -203,16 +203,18 @@ public class LectureBlock implements Serializable {
         // 한 주에 여러번 있을 수 있으므로 토큰이 끝날때까지 돌린다.
         while (token.hasMoreTokens()) {
             String key = token.nextToken(",").trim();
-            if (key.length() < 5)
-                return null;
             try {
-                // 강의 시작시간과 끝시간을 숫자로 변경, 배열 0~17임으로 -1함, 그 외에는 예외처리됨
-                int start = Integer.parseInt(key.substring(1, 3)) - 1;
-                int stop = Integer.parseInt(key.substring(4, 6)) - 1;
+                // 강의 시작시간과 끝시간을 숫자로 변경, 0교시 ~ 23교시, 그 외에는 예외처리됨
+                int start = Integer.parseInt(key.substring(1, 3));
+                if(!(0 <= start && start < time.length)) return null;
 
-                // 만약 1교시부터 18교시가 아닌 경우 (야간시간대는 미지원)
-                if (!(0 <= start && start < time.length && 0 <= stop && stop < time.length))
-                    return null;
+                int stop = start;
+
+                if(key.length() > 3 && key.charAt(3) != '('){
+                    stop = Integer.parseInt(key.substring(4, 6));
+                    if (!(0 <= stop && stop < time.length))
+                        return null;
+                }
 
                 // 요일 확인 코드
                 int day = 0;

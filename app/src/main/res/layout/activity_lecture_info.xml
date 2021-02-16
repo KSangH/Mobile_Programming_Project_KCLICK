@@ -90,31 +90,31 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="학년"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="바구니 인원"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text=" 신청 인원 "
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text=" 제한 인원 "
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="  빈 자리  "
                         android:textSize="@dimen/default_text_size" />
@@ -128,32 +128,32 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="1"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_1"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_2"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_3"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_1_4"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
                 </TableRow>
@@ -161,32 +161,32 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="2"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_1"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_2"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_3"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_2_4"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
                 </TableRow>
@@ -194,32 +194,32 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="3"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_1"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_2"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_3"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_3_4"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
                 </TableRow>
@@ -227,32 +227,32 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="4"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_1"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_2"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_3"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_4_4"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
                 </TableRow>
@@ -265,32 +265,32 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:text="전체"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_1"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_2"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_3"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
 
                     <TextView
                         android:id="@+id/lecture_info_textview_5_4"
-                        android:layout_height="@dimen/timetable_column_height"
+                        android:layout_height="@dimen/lecture_info_table_column_height"
                         android:gravity="center"
                         android:textSize="@dimen/default_text_size" />
                 </TableRow>

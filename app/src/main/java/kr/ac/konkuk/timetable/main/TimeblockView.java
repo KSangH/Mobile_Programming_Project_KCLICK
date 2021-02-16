@@ -31,14 +31,9 @@ public class TimeblockView extends TextView {
     }
 
     // 배경화면용 생성자
-    public TimeblockView(Context context, String text, int location) {
+    public TimeblockView(Context context, String text) {
         this(context);
-        if (location == UP)
-            setBackgroundResource(R.drawable.main_table_border_up);
-        else if (location == DOWN)
-            setBackgroundResource(R.drawable.main_table_border_down);
-        else
-            setBackgroundResource(R.drawable.main_table_border);
+        setBackgroundResource(R.drawable.main_table_border);
         setGravity(Gravity.CENTER_HORIZONTAL);
         setText(text);
     }

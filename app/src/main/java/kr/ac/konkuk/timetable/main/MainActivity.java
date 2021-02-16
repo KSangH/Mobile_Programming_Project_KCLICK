@@ -14,7 +14,7 @@ import android.widget.TableRow;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.chip.ChipGroup;
-import kr.ac.konkuk.timetable.*;
+import kr.ac.konkuk.timetable.R;
 import kr.ac.konkuk.timetable.lecture.LectureActivity;
 import kr.ac.konkuk.timetable.lecture.LectureBlock;
 import kr.ac.konkuk.timetable.lecture.LectureInfoActivity;
@@ -28,10 +28,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TimeblockView[][] timeTableArrays; // 시간표 배열
+    //private TimeblockView[][] timeTableArrays; // 시간표 배열
+    private TableRow[] tableRows;
     private String year, semester, code = "1"; // 연도, 학기, 시간표번호
     private ArrayList<LectureBlock> lectureList; // 과목 배열
-    private final int TIME_COUNT = 19; // 현재 지원은 18교시까지
+    private final int TIME_COUNT = 24; // 현재 지원은 0 - 23교시 
     private AbsoluteLayout timeAbsoluteLayout; // 블록 위에 강의명, 교수명 적혀질 레이아웃
 
     @Override
@@ -71,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
             String[] colorArray = {"#ba6b6c", "#c48b9f", "#9c64a6", "#a094b7", "#6f79a8",
                     "#8aacc8", "#4ba3c7", "#81b9bf", "#4f9a94", "#97b498",
                     "#94af76", "#808e95", "#8c7b75", "#ca9b52", "#cb9b8c"};
-            for(int i=0; i<15; i++){
-                editor.putString("color"+(i+1), colorArray[i]);
+            for (int i = 0; i < 15; i++) {
+                editor.putString("color" + (i + 1), colorArray[i]);
             }
             editor.commit();
         }
@@ -97,39 +98,38 @@ public class MainActivity extends AppCompatActivity {
         lectureList = new ArrayList<LectureBlock>();
 
         // 시간표 생성을 위한 내용
-        timeTableArrays = new TimeblockView[TIME_COUNT][5]; // 타임 테이블 배경화면
+        //timeTableArrays = new TimeblockView[TIME_COUNT][5]; // 타임 테이블 배경화면
         TableLayout table = (TableLayout) findViewById(R.id.main_timetable_tablelayout); // 테이블 레이아웃 불러오기
         timeAbsoluteLayout = findViewById(R.id.main_timetable_absolutelayout); // 절대레이아웃 불러오기
         TableRow.LayoutParams timeTableParams = new TableRow.LayoutParams(getResources().getDimensionPixelSize(R.dimen.timetable_column_width), TableRow.LayoutParams.MATCH_PARENT); // 레이아웃 정보 설정
+        tableRows = new TableRow[14];
 
-        for (int i = 0; i < TIME_COUNT; i++) {
+        for (int i = 0; i < 14; i++) {
             // 각각의 테이블로우를 만듦.
-            TableRow tableRow = new TableRow(this);
+            tableRows[i] = new TableRow(this);
 
             // 교시를 나타내는 타임블록뷰
-            TimeblockView countView = new TimeblockView(this, " " + (9 + i / 2) + " ", i < 18 ? i % 2 : -1);
-            if (i % 2 == 1) // 홀수 행에는 숫자를 지움.
-                countView.setText(null);
+            TimeblockView countView = new TimeblockView(this, " " + (8 + i) + " ");
 
-            // 기본 레리아웃 컬러 설정
+            // 레이아웃 설정
             countView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.timetable_column_height)));
-            countView.setTextColor(getResources().getColor(R.color.colorPrimary, getTheme()));
-            if (i >= 18) {
-                countView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.timetable_column_height) * 2));
-            }
 
             // 테이블 행에 추가
-            tableRow.addView(countView);
+            tableRows[i].addView(countView);
 
-            // 월화수목금 아래에 위치하는 블록들 18교시까지 생성
+            // 월화수목금 블럭 생성
             for (int j = 0; j < 5; j++) {
-                timeTableArrays[i][j] = new TimeblockView(this, null, i < 18 ? i % 2 : -1);
-                timeTableArrays[i][j].setLayoutParams(timeTableParams);
-                tableRow.addView(timeTableArrays[i][j]);
+                TimeblockView timeblockView = new TimeblockView(this, null);
+                timeblockView.setLayoutParams(timeTableParams);
+                tableRows[i].addView(timeblockView);
             }
 
             // 테이블에 테이블로우 추가
-            table.addView(tableRow);
+            table.addView(tableRows[i]);
+
+            if (i == 0 || i > 9) {
+                tableRows[i].setVisibility(View.GONE);
+            }
         }
 
         // 칩이 선택되었을 때, 코드 변경 후, 시간표 변경
@@ -171,6 +171,12 @@ public class MainActivity extends AppCompatActivity {
         timeAbsoluteLayout.removeAllViews();
         // 강의블록 색상 순서 초기화
         TimeblockView.setInitColor(getApplicationContext());
+
+        for (int i = 0; i < tableRows.length; i++) {
+            if (i == 0 || i > 9) {
+                tableRows[i].setVisibility(View.GONE);
+            }
+        }
     }
 
     // 시간표 셋팅 함수 (새로고침 함수)
@@ -201,31 +207,63 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // 기본 시간표 9시-18시 초과 시 행 추가
+        for (LectureBlock lb : lectureList) {
+            int[][] convertTime = lb.convertTime();
+            for (int i = 0; i < convertTime[0].length; i++) {
+                if (convertTime[0][i] == 1) {
+                    tableRows[0].setVisibility(View.VISIBLE);
+                }
+                if (convertTime[19][i] == 1) {
+                    tableRows[10].setVisibility(View.VISIBLE);
+                }
+                if (convertTime[20][i] == 1) {
+                    tableRows[10].setVisibility(View.VISIBLE);
+                    tableRows[11].setVisibility(View.VISIBLE);
+                }
+                if (convertTime[21][i] == 1) {
+                    tableRows[10].setVisibility(View.VISIBLE);
+                    tableRows[11].setVisibility(View.VISIBLE);
+                    tableRows[12].setVisibility(View.VISIBLE);
+                }
+                if (convertTime[22][i] == 1 || convertTime[23][i] == 1) {
+                    tableRows[10].setVisibility(View.VISIBLE);
+                    tableRows[11].setVisibility(View.VISIBLE);
+                    tableRows[12].setVisibility(View.VISIBLE);
+                    tableRows[13].setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
         // 블록의 기본정보 저장 (0행 높이, 가로, 세로)
         float dayHeight = getResources().getDimension(R.dimen.default_text_size);
-        int blockWidth = timeTableArrays[0][0].getWidth();
-        int blockHeight = timeTableArrays[0][0].getHeight();
+        int blockWidth = tableRows[1].getChildAt(1).getWidth();
+        int blockHeight = tableRows[1].getChildAt(1).getHeight();
+        float blockHeight2 = getResources().getDimension(R.dimen.default_text_size);
+        // 각각의 시간 표기
+        int[][] times = {{0, 0, 1, 0}, {1, 0, 1, 30}, {1, 30, 2, 0}, {2, 0, 2, 30}, {2, 30, 3, 0},
+                {3, 0, 3, 30}, {3, 30, 4, 0}, {4, 0, 4, 30}, {4, 30, 5, 0}, {5, 0, 5, 30}, {5, 30, 6, 0},
+                {6, 0, 6, 30}, {6, 30, 7, 0}, {7, 0, 7, 30}, {7, 30, 8, 0}, {8, 0, 8, 30}, {8, 30, 9, 0},
+                {9, 0, 9, 30}, {9, 30, 10, 0}, {10, 15, 11, 00}, {11, 0, 11, 45}, {11, 45, 12, 30}, {12, 30, 13, 15}, {13, 15, 14, 0}};
+        int visible = tableRows[0].getVisibility() == View.GONE ? -1 : 0;
 
-        // 각 블록 별로 시간표 설정
-        for (int i = 0; i < lectureList.size(); i++) {
-            // 현재 블록 가져오기
-            LectureBlock lectureBlock = lectureList.get(i);
-            // 시간을 배열로 변환
-            int[][] convertTime = lectureBlock.convertTime();
+        for (LectureBlock lb : lectureList) {
 
-            // 해당 시간이 1이면 강의 이름과 교수 표시
+            int[][] convertTime = lb.convertTime();
+
             for (int j = 0; j < 5; j++) {
                 // 기본 초기화
                 int check = 0;
                 TimeblockView lectureTextBlock = null;
+
                 for (int k = 0; k < TIME_COUNT; k++) {
                     // j요일, k교시인 경우
                     if (convertTime[k][j] == 1) {
                         if (check == 0) {
                             // 해당 과목 시작시간이면 현재 블록의 x,y좌표와 텍스트를 만들어 새로운 텍스트블럭을 만든다.
-                            float x = timeTableArrays[k][j].getX();
-                            float y = blockHeight * k + dayHeight;
-                            lectureTextBlock = new TimeblockView(this, lectureBlock, x, y, blockWidth, blockHeight);
+                            float x = tableRows[1].getChildAt(j + 1).getX();
+                            float y = (times[k][0] + visible) * blockHeight + times[k][1] / 15 * blockHeight2 + dayHeight;
+                            lectureTextBlock = new TimeblockView(this, lb, x, y, blockWidth, 50);
                             // 해당 블록을 클릭했을 때
                             lectureTextBlock.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -238,27 +276,28 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                         check++;
-                        if (k >= 18)
-                            check++;
                     } else {
                         // 만약 현재 텍스트 블럭이 만들어져 있으면
                         if (lectureTextBlock != null) {
                             // 높이를 블럭높이 * 교시개수를 곱하여 설정하고, 메인 레이아웃에 추가한다.
-                            lectureTextBlock.setHeight(blockHeight * check);
+                            float height = (times[k-1][2] + visible) * blockHeight + times[k-1][3] / 15 * blockHeight2 + dayHeight - lectureTextBlock.getY();
+                            lectureTextBlock.setHeight((int) height);
                             timeAbsoluteLayout.addView(lectureTextBlock);
                         }
                         lectureTextBlock = null;
                         check = 0;
                     }
                 }
-                // 만약 현재 텍스트 블럭이 만들어져 있으면 (~18교시 인 경우 아래의 코드가 실행된다)
+                // 만약 현재 텍스트 블럭이 만들어져 있으면 (~23교시 인 경우 아래의 코드가 실행된다)
                 if (lectureTextBlock != null) {
-                    lectureTextBlock.setHeight(blockHeight * check);
+                    float height = (times[23][2] + visible) * blockHeight + times[23][3] / 15 * blockHeight2 + dayHeight - lectureTextBlock.getY();
+                    lectureTextBlock.setHeight((int) height);
                     timeAbsoluteLayout.addView(lectureTextBlock);
                 }
             }
             // 블럭의 색상을 변경한다
             TimeblockView.setNextColor();
+
         }
     }
 

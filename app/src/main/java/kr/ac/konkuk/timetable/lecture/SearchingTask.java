@@ -81,16 +81,14 @@ public class SearchingTask implements Runnable {
                     // 과목명으로 조회하기
                     try {
                         params[3] = params[3].replaceAll(" ", "");
-                        if(params[3].length() == 4){
+                        if (params[3].length() == 4) {
                             Integer.parseInt(params[3]);
                             document = Jsoup.connect("https://kupis.konkuk.ac.kr/sugang/acd/cour/time/SeoulTimetableInfo.jsp").data("ltYy", params[0]).data("ltShtm", params[1]).data("sbjtId", params[3]).postDataCharset("EUC-KR").post();
                         } else {
                             throw new Exception();
                         }
-
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         document = Jsoup.connect("https://kupis.konkuk.ac.kr/sugang/acd/cour/time/SeoulTimetableInfo.jsp").data("ltYy", params[0]).data("ltShtm", params[1]).data("sbjtNm", params[3]).postDataCharset("EUC-KR").post();
-
                     }
                     elements = document.select("tr[class=table_bg_white]");
                 } else if (params.length == 5) {
@@ -107,8 +105,9 @@ public class SearchingTask implements Runnable {
                     elements = document.select("tr[class=table_bg_white]");
                     keyWord = params[5];
                 }
-                if (elements != null) {
 
+
+                if (elements != null) {
                     LectureBlock[] blockArray = new LectureBlock[elements.size()];
                     Thread[] threadArray = new Thread[elements.size()];
                     for (int i = 1; i < elements.size(); i++) {
@@ -179,7 +178,6 @@ public class SearchingTask implements Runnable {
             msg.what = type;
             handler.sendMessage(msg);
         }
-
     }
 
     // 인원 조회를 위한 클래스
@@ -224,7 +222,7 @@ public class SearchingTask implements Runnable {
                         block.setSuguni(elements.get(0).text());
                         StringTokenizer token = new StringTokenizer(elements.get(1).text());
                         block.setCurrent(token.nextToken("/").trim());
-                        if(token.hasMoreTokens())
+                        if (token.hasMoreTokens())
                             block.setTotal(token.nextToken("/").trim());
                     }
                 }
