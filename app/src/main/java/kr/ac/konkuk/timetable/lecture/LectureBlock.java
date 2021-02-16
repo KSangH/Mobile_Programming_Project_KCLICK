@@ -24,17 +24,17 @@ public class LectureBlock implements Serializable {
     public LectureBlock(Elements elements) {
         this();
         setGrade(elements.get(0).text());
-        this.lecture_haksu = elements.get(1).text()+" ";
-        this.lecture_div = elements.get(2).text()+" ";
-        this.lecture_number = elements.get(3).text()+" ";
+        this.lecture_haksu = elements.get(1).text() + " ";
+        this.lecture_div = elements.get(2).text() + " ";
+        this.lecture_number = elements.get(3).text() + " ";
         this.lecture_credit = elements.get(5).text() + "학점";
         setTitle(elements.get(4).select("u").text());
-        this.lecture_time = elements.get(8).text()+" ";
-        this.lecture_professor = elements.get(9).text()+" ";
+        this.lecture_time = elements.get(8).text() + " ";
+        this.lecture_professor = elements.get(9).text() + " ";
         setForeign(elements.get(10).text());
-        this.lecture_type1 = elements.get(13).text()+" ";
-        this.lecture_type2 = elements.get(14).text()+" ";
-        this.lecture_remark = elements.get(17).text()+" ";
+        this.lecture_type1 = elements.get(13).text() + " ";
+        this.lecture_type2 = elements.get(14).text() + " ";
+        this.lecture_remark = elements.get(17).text() + " ";
     }
 
     // 파일에서 한 줄씩 불러와서 쓰는 생성자 (toString 형식과같음)
@@ -62,7 +62,7 @@ public class LectureBlock implements Serializable {
 
     // 제한학년 설정
     public void setGrade(String grade) {
-        if(grade.equals("9")){
+        if (grade.equals("9")) {
             this.lecture_grade = "전체학년";
         } else {
             this.lecture_grade = grade + "학년";
@@ -71,7 +71,7 @@ public class LectureBlock implements Serializable {
 
     // 원어강의 설정
     public void setForeign(String foreign) {
-        if(foreign.equals("")){
+        if (foreign.equals("")) {
             this.lecture_foreign = "해당없음";
         } else {
             this.lecture_foreign = foreign;
@@ -187,6 +187,7 @@ public class LectureBlock implements Serializable {
         else
             return true;
     }
+
     // 이 함수는 시간이 월-금, 1-18교시가 아니면 null처리하며, 그 외에는 시간에 맞는 배열을 반환함.
     public int[][] convertTime() {
 
@@ -197,7 +198,7 @@ public class LectureBlock implements Serializable {
         StringTokenizer token = new StringTokenizer(lecture_time);
         int[][] time = new int[24][5];
 
-        if(token.countTokens() < 1){
+        if (token.countTokens() < 1) {
             return null;
         }
         // 한 주에 여러번 있을 수 있으므로 토큰이 끝날때까지 돌린다.
@@ -206,11 +207,11 @@ public class LectureBlock implements Serializable {
             try {
                 // 강의 시작시간과 끝시간을 숫자로 변경, 0교시 ~ 23교시, 그 외에는 예외처리됨
                 int start = Integer.parseInt(key.substring(1, 3));
-                if(!(0 <= start && start < time.length)) return null;
+                if (!(0 <= start && start < time.length)) return null;
 
                 int stop = start;
 
-                if(key.length() > 3 && key.charAt(3) != '('){
+                if (key.length() > 3 && key.charAt(3) != '(') {
                     stop = Integer.parseInt(key.substring(4, 6));
                     if (!(0 <= stop && stop < time.length))
                         return null;
@@ -259,7 +260,7 @@ public class LectureBlock implements Serializable {
 
         // 하나라도 정상적인 시간이 아닌 경우에는 오류
         if (time1 == null || time2 == null)
-            return true;
+            return false;
 
         // 겹치는 시간 확인
         for (int i = 0; i < time1.length; i++) {

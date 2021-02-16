@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import androidx.appcompat.app.AlertDialog;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<LectureBlock> lectureList; // 과목 배열
     private final int TIME_COUNT = 24; // 현재 지원은 0 - 23교시 
     private AbsoluteLayout timeAbsoluteLayout; // 블록 위에 강의명, 교수명 적혀질 레이아웃
+    private LinearLayout timeLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         //timeTableArrays = new TimeblockView[TIME_COUNT][5]; // 타임 테이블 배경화면
         TableLayout table = (TableLayout) findViewById(R.id.main_timetable_tablelayout); // 테이블 레이아웃 불러오기
         timeAbsoluteLayout = findViewById(R.id.main_timetable_absolutelayout); // 절대레이아웃 불러오기
+        timeLinearLayout = findViewById(R.id.main_linearlayout_elearning);
         TableRow.LayoutParams timeTableParams = new TableRow.LayoutParams(getResources().getDimensionPixelSize(R.dimen.timetable_column_width), TableRow.LayoutParams.MATCH_PARENT); // 레이아웃 정보 설정
         tableRows = new TableRow[14];
 
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
             // 월화수목금 블럭 생성
             for (int j = 0; j < 5; j++) {
-                TimeblockView timeblockView = new TimeblockView(this, null);
+                TimeblockView timeblockView = new TimeblockView(this, "");
                 timeblockView.setLayoutParams(timeTableParams);
                 tableRows[i].addView(timeblockView);
             }
@@ -169,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         lectureList.clear();
         // 시간표 위에 표시된 강의 뷰 삭제
         timeAbsoluteLayout.removeAllViews();
+        timeLinearLayout.removeAllViews();
         // 강의블록 색상 순서 초기화
         TimeblockView.setInitColor(getApplicationContext());
 
@@ -210,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
         // 기본 시간표 9시-18시 초과 시 행 추가
         for (LectureBlock lb : lectureList) {
             int[][] convertTime = lb.convertTime();
+            if (convertTime == null) continue;
             for (int i = 0; i < convertTime[0].length; i++) {
                 if (convertTime[0][i] == 1) {
                     tableRows[0].setVisibility(View.VISIBLE);
@@ -251,6 +256,24 @@ public class MainActivity extends AppCompatActivity {
 
             int[][] convertTime = lb.convertTime();
 
+            // 클릭 시 작동할 리스너
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    LectureBlock lb = ((TimeblockView) view).getLectureBlock();
+                    Intent intent = new Intent(getApplicationContext(), LectureInfoActivity.class);
+                    intent.putExtra("year", year).putExtra("semester", semester).putExtra("lectureblock", lb);
+                    startActivity(intent);
+                }
+            };
+
+            if (convertTime == null) {
+                TimeblockView tb = new TimeblockView(this, lb);
+                tb.setOnClickListener(listener);
+                timeLinearLayout.addView(tb);
+                continue;
+            }
+
             for (int j = 0; j < 5; j++) {
                 // 기본 초기화
                 int check = 0;
@@ -265,22 +288,14 @@ public class MainActivity extends AppCompatActivity {
                             float y = (times[k][0] + visible) * blockHeight + times[k][1] / 15 * blockHeight2 + dayHeight;
                             lectureTextBlock = new TimeblockView(this, lb, x, y, blockWidth, 50);
                             // 해당 블록을 클릭했을 때
-                            lectureTextBlock.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    LectureBlock lb = ((TimeblockView) view).getLectureBlock();
-                                    Intent intent = new Intent(getApplicationContext(), LectureInfoActivity.class);
-                                    intent.putExtra("year", year).putExtra("semester", semester).putExtra("lectureblock", lb);
-                                    startActivity(intent);
-                                }
-                            });
+                            lectureTextBlock.setOnClickListener(listener);
                         }
                         check++;
                     } else {
                         // 만약 현재 텍스트 블럭이 만들어져 있으면
                         if (lectureTextBlock != null) {
                             // 높이를 블럭높이 * 교시개수를 곱하여 설정하고, 메인 레이아웃에 추가한다.
-                            float height = (times[k-1][2] + visible) * blockHeight + times[k-1][3] / 15 * blockHeight2 + dayHeight - lectureTextBlock.getY();
+                            float height = (times[k - 1][2] + visible) * blockHeight + times[k - 1][3] / 15 * blockHeight2 + dayHeight - lectureTextBlock.getY();
                             lectureTextBlock.setHeight((int) height);
                             timeAbsoluteLayout.addView(lectureTextBlock);
                         }

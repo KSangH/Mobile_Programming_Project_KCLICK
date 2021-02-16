@@ -208,7 +208,7 @@ public class LectureActivity extends AppCompatActivity {
         // 시간 중복 제외하기
         if (timeCheckBox.isChecked()) {
             for (int i = searchLectureList.size() - 1; i >= 0; i--) {
-                if (isDuplicate(searchLectureList.get(i).convertTime())) {
+                if (isDuplicate(searchLectureList.get(i))) {
                     searchLectureList.remove(i);
                 }
             }
@@ -416,7 +416,7 @@ public class LectureActivity extends AppCompatActivity {
 
     private void setTotalGrade() {
         int sum = 0;
-        for(LectureBlock lb : userLectureList){
+        for (LectureBlock lb : userLectureList) {
             String grade = lb.getCredit();
             sum += Integer.parseInt(grade.split("학")[0]);
         }
@@ -424,9 +424,13 @@ public class LectureActivity extends AppCompatActivity {
     }
 
     // 현재 사용자 시간표와 중복여부 확인하기
-    private boolean isDuplicate(int[][] convertTime) {
+    private boolean isDuplicate(LectureBlock lb) {
+        int[][] convertTime = lb.convertTime();
         // 기존 유저 시간표와 비교함. checktime이 true이면 시간이 겹치는 것임.
         for (int i = 0; i < userLectureList.size(); i++) {
+            if (userLectureList.get(i).equals(lb)) {
+                return true;
+            }
             if (userLectureList.get(i).checkTime(convertTime)) {
                 return true;
             }
@@ -451,8 +455,7 @@ public class LectureActivity extends AppCompatActivity {
     // 강의 추가 시, 호출되는 함수
     private void addLecture(LectureBlock lb) {
 
-        int[][] convertTime = lb.convertTime();
-
+        /*
         // 시간이 정상적이지 않음 (월-금, 1-18교시가 아니면 null)
         if (convertTime == null) {
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
@@ -460,13 +463,13 @@ public class LectureActivity extends AppCompatActivity {
                     .setMessage("월-금, 1-19교시가 아닌 시간표의 경우, 추가할 수 없습니다.")
                     .setPositiveButton("확인", null).show();
             return;
-        }
+        }*/
 
         // 중복이면 추가하지 않음
-        if (isDuplicate(convertTime)) {
+        if (isDuplicate(lb)) {
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
             alertdialog.setTitle("안내")
-                    .setMessage("강의 시간이 중복된 경우, 추가할 수 없습니다.")
+                    .setMessage("강의 시간이나 중복된 과목인 경우, 추가할 수 없습니다.")
                     .setPositiveButton("확인", null).show();
             return;
         }

@@ -120,7 +120,7 @@ public class SearchingTask implements Runnable {
                         // 만약 심교의 경우 3가지 영역을 keyWord에 저장되어 있음.
 
                         // keyWord는 심교 외에는 null 이고, 심교인 경우에는 영역 체크 후에 추가한다.
-                        if (keyWord == null || (keyWord != null && keyWord.equals(elementFinal.get(14).text()))) {
+                        if (keyWord == null || (keyWord != null && keyWord.equals(elementFinal.get(15).text()))) {
                             blockArray[i] = new LectureBlock(elementFinal);
                             threadArray[i] = new Thread(new CountTask(params[0], params[1], params[2], blockArray[i]));
                             threadArray[i].start();

@@ -14,12 +14,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class TimeblockView extends TextView {
 
     private static int count = 0; // 현재 카운트의 위치 (공용)
-    /*private static int[] colors = { // 색상 모음
-            R.color.timetable_color_1, R.color.timetable_color_2, R.color.timetable_color_3,
-            R.color.timetable_color_4, R.color.timetable_color_5, R.color.timetable_color_6,
-            R.color.timetable_color_7, R.color.timetable_color_8, R.color.timetable_color_9,
-            R.color.timetable_color_10, R.color.timetable_color_11, R.color.timetable_color_12,
-            R.color.timetable_color_13, R.color.timetable_color_14, R.color.timetable_color_15};*/
     private static int[] colors = new int[15];
     static final int UP = 0, DOWN = 1; // 상수 설정
     private LectureBlock lectureBlock = null;
@@ -38,10 +32,20 @@ public class TimeblockView extends TextView {
         setText(text);
     }
 
-    // 강의명과 교수명을 표시하는 텍스트뷰의 기본 생성자
-    public TimeblockView(Context context, LectureBlock sb, float x, float y, int width, int height) {
+    // 이러닝용 생성자
+    public TimeblockView(Context context, LectureBlock lb) {
         this(context);
-        lectureBlock = sb;
+        lectureBlock = lb;
+        setPadding(15,15,5,15);
+        setBackgroundResource(R.drawable.main_table_border);
+        setGravity(Gravity.CENTER_VERTICAL);
+        setText(lb.getTitle() + "/" + lb.getProfessor());
+    }
+
+    // 강의명과 교수명을 표시하는 텍스트뷰의 기본 생성자
+    public TimeblockView(Context context, LectureBlock lb, float x, float y, int width, int height) {
+        this(context);
+        lectureBlock = lb;
 
         // paddingleft 설정
         setPadding(3, 0, 0, 0);
@@ -55,11 +59,10 @@ public class TimeblockView extends TextView {
         setHeight(height);
 
         // 텍스트 관련 설정
-        setText(sb.getTitle() + "\n" + sb.getProfessor());
+        setText(lb.getTitle() + "\n" + lb.getProfessor());
         setTextColor(Color.WHITE);
 
         // 현재 인덱스가 count인 색상으로 설정
-        //setBackgroundColor(getResources().getColor(colors[count], context.getTheme()));
         setBackgroundColor(colors[count]);
     }
 
